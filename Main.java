@@ -27,35 +27,38 @@ public class Main {
 	
 	public static void main(String[] args) {
 		try {
-			ArrayList<Character> list=Main.readFile(args[0]);
+			ArrayList<Character> list=Main.readFile("E:\\eclipse-work\\Compile\\in.txt");
 			Judge judge=new Judge();
 			for(int i=0;i<list.size();i++) {
 				if(judge.isspace(list.get(i))) {
 					continue;
 				}
 				else if(Character.isDigit(list.get(i))) {
-					for(int j=i+1;j<list.size();j++) {
-						if(Character.isDigit(list.get(j))) {
-							continue;
+					StringBuffer stringBuffer=new StringBuffer();
+					for(;i<list.size();i++) {
+						if(Character.isDigit(list.get(i))) {
+							stringBuffer.append(list.get(i));
 						}
-						else {
-							Judge.printNum(list, i, j-1);
-							i=j-1;
-							break;
-						}
+						else break;
 					}
+					i--;
+					int num=Integer.parseInt(stringBuffer.toString());
+					System.out.println("Int("+num+")");
 				}
 				else if(Character.isLetter(list.get(i))) {
 					StringBuffer sBuffer=new StringBuffer();
-					for(int j=i;j<list.size();j++) {
+					int j=0;
+					for(j=i;j<list.size();j++) {
 						if(Character.isLetterOrDigit(list.get(j))){
 							sBuffer.append(list.get(j));
 						}
 						else {
-							i=j-1;
 							break;
 						}
 					}
+					if(j==list.size()-1)
+						i=j;
+					else i=j-1;
 					judge.GetKeyWord(sBuffer.toString());
 				}
 				else if(judge.isoptSingle(list.get(i))) {
