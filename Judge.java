@@ -1,55 +1,20 @@
 
-import java.util.ArrayList;
-
 public class Judge {
 	
+	static String keyword[]= {"BEGIN","END","FOR","IF","THEN","ELSE"};
+	static String outword[]= {"Begin","End","For","If","Then","Else"};
 	public void GetKeyWord(String word) {
-		char firstChar=word.charAt(0);
-		String string="";
-		switch (firstChar) {
-			case 'B':
-				if(word.equals("BEGIN")) {
-					string="Begin";
-				}
-				break;
-			case 'E':
-				if(word.equals("END")) {
-					string="End";
-				}
-				else if(word.equals("ELSE")) {
-					string="Else";
-				}
-				break;
-			case 'F':
-				if(word.equals("FOR")) {
-					string="For";
-				}
-				break;
-			case 'I':
-				if(word.equals("IF")) {
-					string="If";
-				}   
-				break;
-			case 'T':
-				if(word.equals("THEN")) {
-					string="Then";
-				}
-				break;
+		StringBuffer stringBuffer=new StringBuffer();
+		for(int i=0;i<keyword.length;i++) {
+			if(word.equals(keyword[i])){
+				System.out.println(outword[i]);
+				return ;
+			}
 		}
-		if(string!=null) {
-			System.out.println(string);
-		}
-		else {
-			System.out.println("Ident("+word+")");
-		}
-	}
-	
-	public static void printNum(ArrayList<Character> list,int start,int end) {
-		StringBuffer sBuffer=new StringBuffer();
-		for(int i=start;i<=end;i++) {
-			sBuffer.append(list.get(i));
-		}
-		System.out.println("Int("+Integer.parseInt(sBuffer.toString())+")");
+		stringBuffer.append("Ident(");
+		stringBuffer.append(word);
+		stringBuffer.append(")");
+		System.out.println(stringBuffer.toString());
 	}
 	
 	public boolean isoptSingle(char ch) {
