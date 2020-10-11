@@ -1,4 +1,3 @@
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,15 +11,10 @@ public class Main {
 	public static ArrayList<Character> readFile(String filename) throws IOException{
 		ArrayList<Character> list=new ArrayList<Character>();
 		FileReader fReader=new FileReader(filename);
-		BufferedReader bufferedReader=new BufferedReader(fReader);
-		String strLine=bufferedReader.readLine();
-		while(strLine!=null) {
-			for(int i=0;i<strLine.length();i++) {
-				list.add(strLine.charAt(i));
-			}
-			strLine=bufferedReader.readLine();
+		int i=0;
+		while((i=fReader.read())!=-1) {
+			list.add((char)i);
 		}
-		bufferedReader.close();
 		fReader.close();
 		return list;
 	}
