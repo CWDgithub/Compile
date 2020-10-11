@@ -27,7 +27,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		try {
-			ArrayList<Character> list=Main.readFile("E:\\eclipse-work\\Compile\\in.txt");
+			ArrayList<Character> list=Main.readFile(args[0]);
 			Judge judge=new Judge();
 			for(int i=0;i<list.size();i++) {
 				if(judge.isspace(list.get(i))) {
